@@ -172,6 +172,24 @@
   ol.legend li::before { content: counter(l); width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--accent); color: var(--surface); display: grid; place-items: center; font: 700 12px/1 var(--f-head); }
 
   footer { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+
+  /* Plan drawings: own palette, scoped to .pdwg */
+  .pdwg { --sheet: #fbfbfc; --rule: #c8ced5; --red: #bf252c; --tablet: #2b3036; --screen: #47505a; --alu: #c4cbd1; --alu-edge: #8a959e; --vhb: #6c7e98; --hinge: #1e2227; --wood: #dccbad; --glue: #dfa628; --steel: #9aa4ab; --fpc: #b8692b; --cable: #3a434c; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .pdwg { --sheet: #16191d; --rule: #2c3239; --red: #ff7c70; --tablet: #0a0c0e; --screen: #29313a; --alu: #8e99a2; --alu-edge: #b9c3ca; --vhb: #8195b2; --hinge: #3b434b; --wood: #7b6b51; --glue: #d8a43a; --steel: #b6c0c7; --fpc: #e39a5d; --cable: #cfd6dc; }
+  }
+  :root[data-theme="dark"] .pdwg { --sheet: #16191d; --rule: #2c3239; --red: #ff7c70; --tablet: #0a0c0e; --screen: #29313a; --alu: #8e99a2; --alu-edge: #b9c3ca; --vhb: #8195b2; --hinge: #3b434b; --wood: #7b6b51; --glue: #d8a43a; --steel: #b6c0c7; --fpc: #e39a5d; --cable: #cfd6dc; }
+  .pdwg .frame { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 12px; overflow-x: auto; }
+  .pdwg svg { display: block; width: 100%; min-width: 560px; height: auto; }
+  .pdwg .t { font: 600 15px var(--f-head); font-stretch: 75%; fill: var(--ink); }
+  .pdwg .tb { font: 700 19px var(--f-head); font-stretch: 75%; fill: var(--ink); }
+  .pdwg .tm { font: 400 13px var(--f-head); font-stretch: 87.5%; fill: var(--muted); }
+  .pdwg .on-alu { fill: var(--tablet); }
+  .pdwg svg .bad { fill: var(--red); }
+  .pdwg svg .good { fill: var(--ok); }
+  .step figure.pdwg { max-width: none; }
+  .alt td.red { color: var(--accent); }
+  .alt th.muted { color: var(--muted); font-weight: 400; }
 </style>
 </head>
 <body>
@@ -203,6 +221,58 @@
       <li><span>A flat cable and a USB-C coupler stay fixed on the tablet. Only the charging cable moves, in a short loop over the axis.</span></li>
       <li><span>A custom app uses the accelerometer to tell whether the tablet is up or down, and turns the display off and on. Details below.</span></li>
     </ul>
+    <h3>Why a plate</h3>
+<figure class="pdwg">
+<div class="frame">
+<svg viewBox="0 0 900 290" role="img" aria-labelledby="pd2">
+<title id="pd2">Left: hinge leaf glued straight to the tablet; flipping peels the bond off at one edge. Right, as built: aluminium plate bonded over a large area, hinge bolted to the plate.</title>
+<text class="tb bad" x="20" y="28">Before: leaf glued directly</text>
+<rect x="20" y="50" width="400" height="26" fill="var(--wood)"/>
+<text class="tm" x="320" y="68">Cabinet bottom</text>
+<rect x="102" y="76" width="44" height="8" fill="var(--hinge)"/>
+<circle cx="96" cy="92" r="11" fill="var(--hinge)"/>
+<rect x="100" y="120" width="300" height="18" rx="4" fill="var(--tablet)"/>
+<rect x="100" y="138" width="300" height="4" fill="var(--screen)"/>
+<text class="tm" x="280" y="162">Tablet, back facing up</text>
+<rect x="102" y="103" width="44" height="9" fill="var(--hinge)"/>
+<rect x="102" y="112" width="44" height="8" fill="var(--glue)"/>
+<line x1="96" y1="92" x2="104" y2="104" stroke="var(--hinge)" stroke-width="8"/>
+<path d="M 150 116 q 22 -4 26 -30" fill="none" stroke="var(--red)" stroke-width="2.5"/>
+<path d="M 170 88 l 6 -6 l 3 9 z" fill="var(--red)"/>
+<text class="t bad" x="186" y="92">it tears here:</text>
+<text class="t bad" x="186" y="109">the edge peels off</text>
+<text class="tm" x="20" y="200">Small area (one leaf). The whole load sits on the front</text>
+<text class="tm" x="20" y="217">glue edge, up to about 2 N·m on every flip with the</text>
+<text class="tm" x="20" y="234">set screw tight.</text>
+<rect x="20" y="254" width="14" height="10" fill="var(--glue)"/><text class="tm" x="40" y="263">Adhesive</text>
+<text class="tb good" x="470" y="28">Built: plate, hinge bolted on</text>
+<rect x="470" y="50" width="410" height="26" fill="var(--wood)"/>
+<text class="tm" x="780" y="68">Cabinet bottom</text>
+<rect x="552" y="76" width="44" height="8" fill="var(--hinge)"/>
+<circle cx="546" cy="92" r="11" fill="var(--hinge)"/>
+<line x1="546" y1="92" x2="554" y2="104" stroke="var(--hinge)" stroke-width="8"/>
+<rect x="552" y="104" width="44" height="9" fill="var(--hinge)"/>
+<rect x="562" y="104" width="4" height="15" fill="var(--steel)"/>
+<rect x="582" y="104" width="4" height="15" fill="var(--steel)"/>
+<rect x="552" y="113" width="316" height="6" fill="var(--alu)" stroke="var(--alu-edge)" stroke-width="1"/>
+<rect x="552" y="119" width="316" height="4" fill="var(--vhb)"/>
+<rect x="546" y="123" width="328" height="18" rx="4" fill="var(--tablet)"/>
+<rect x="546" y="141" width="328" height="4" fill="var(--screen)"/>
+<g stroke="var(--ok)" stroke-width="2">
+<line x1="600" y1="160" x2="600" y2="148"/><line x1="650" y1="160" x2="650" y2="148"/>
+<line x1="700" y1="160" x2="700" y2="148"/><line x1="750" y1="160" x2="750" y2="148"/>
+<line x1="800" y1="160" x2="800" y2="148"/><line x1="850" y1="160" x2="850" y2="148"/>
+</g>
+<text class="t good" x="600" y="180">Load spread over almost the whole back</text>
+<text class="tm" x="470" y="217">The hinge is bolted to the plate, and the plate is</text>
+<text class="tm" x="470" y="234">bonded to the tablet over a large area.</text>
+<rect x="470" y="254" width="14" height="10" fill="var(--alu)" stroke="var(--alu-edge)"/><text class="tm" x="490" y="263">Plate</text>
+<rect x="570" y="254" width="14" height="10" fill="var(--vhb)"/><text class="tm" x="590" y="263">VHB tape</text>
+<rect x="670" y="254" width="14" height="10" fill="var(--steel)"/><text class="tm" x="690" y="263">Screw</text>
+</svg>
+</div>
+<figcaption>The tablet is drawn horizontal so the layers are readable.</figcaption>
+</figure>
     <div class="pair">
       <figure>
         <img src="img/4.webp" width="1400" height="578" alt="Tablet flipped up, lying flat under the cabinet floor, display facing down">
@@ -266,6 +336,38 @@
         <div class="step">
           <h3>Screw the hinge to the plate</h3>
           <p>Push the M3 countersunk screws from the tablet side through plate and leaf, washer and nut on top. Tighten firmly: the M3 has play in the leaf's hole, only the clamping holds it.</p>
+<figure class="pdwg">
+<div class="frame">
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="pd3">
+<title id="pd3">Section: tablet, VHB tape above it, 2 mm aluminium plate with a countersunk bolt, hinge leaf, small washer and nut on top.</title>
+<rect x="60" y="180" width="420" height="36" fill="var(--tablet)"/>
+<text class="tm" x="70" y="203" style="fill:var(--alu)">Tablet back</text>
+<rect x="60" y="168" width="420" height="12" fill="var(--vhb)"/>
+<path d="M 60 138 H 250 L 238 168 H 60 Z" fill="var(--alu)" stroke="var(--alu-edge)"/>
+<path d="M 282 138 L 294 168 H 480 V 138 Z" fill="var(--alu)" stroke="var(--alu-edge)"/>
+<path d="M 250 168 H 282 L 294 138 H 238 Z" fill="var(--steel)" transform="rotate(180 266 153)"/>
+<rect x="160" y="100" width="210" height="38" fill="var(--hinge)"/>
+<rect x="256" y="62" width="20" height="100" fill="var(--steel)"/>
+<rect x="240" y="92" width="52" height="8" fill="var(--steel)" stroke="var(--alu-edge)"/>
+<rect x="244" y="68" width="44" height="24" fill="var(--steel)" stroke="var(--alu-edge)"/>
+<g stroke="var(--muted)" stroke-width="1">
+<line x1="288" y1="80" x2="500" y2="60"/>
+<line x1="370" y1="118" x2="500" y2="114"/>
+<line x1="420" y1="152" x2="500" y2="144"/>
+<line x1="440" y1="174" x2="500" y2="174"/>
+<line x1="270" y1="160" x2="500" y2="202"/>
+</g>
+<text class="t" x="506" y="64">Nut + small washer</text>
+<text class="t" x="506" y="118">Hinge leaf</text>
+<text class="t" x="506" y="148">Aluminium plate 2 mm</text>
+<text class="t" x="506" y="178">VHB tape</text>
+<text class="t" x="506" y="206">Countersunk head flush,</text>
+<text class="t" x="506" y="222">nothing presses on the tablet</text>
+</svg>
+</div>
+<figcaption>The bolt comes from the underside of the plate, the nut sits on top of the leaf. The plate has no thread: nut, leaf, plate and bolt head are clamped together.</figcaption>
+</figure>
+<p class="note"><b>Why M3:</b> The sheet must be at least as thick as the bolt head is high. An M3 countersunk head (1.7 mm) fits in 2 mm; M5 (2.8 mm) would need 3 mm. Otherwise the countersink cuts through and leaves only a knife edge. The load is small: about 0.22 N·m to hold, at most about 2 N·m of friction on two bolts.</p>
         </div>
       </li>
       <li>
@@ -324,6 +426,110 @@
         </div>
       </li>
     </ol>
+  </section>
+
+  <section class="alt">
+    <h2>Cable: two alternatives, not built</h2>
+    <p>As built: flat cable and coupler fixed on the tablet, the charging cable runs under the cabinet and is covered with furniture film. These routes were planned before. They are not built; the drawings are plans.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Option</th><th>Woodwork</th><th>Requires</th><th>Visible</th></tr></thead>
+<tbody>
+<tr><th class="muted">1 · Hole through the cabinet</th><td>bore, through</td><td>space in the cabinet</td><td class="red">Rejected: the cabinet is full, and the coupling is too long for a small hole.</td></tr>
+<tr><th>2 · Surface cable channel</th><td>none</td><td>stowed gap ≥ coupling thickness + 1 mm</td><td>channel under the cabinet and on the wall</td></tr>
+<tr><th>3 · Pocket and groove from below</th><td>4 to 6 mm deep, not through</td><td>bottom ≥ 12 mm, router</td><td>only the wall channel</td></tr>
+</tbody>
+</table>
+</div>
+    <h3>Option 2: surface cable channel</h3>
+<figure class="pdwg">
+<div class="frame">
+<svg viewBox="0 0 700 400" role="img" aria-labelledby="pd4">
+<title id="pd4">Side view, option 2: coupling on the tablet back, flat charging cable in a short loop over the pivot, then in a cable channel under the cabinet beside the tablet to the wall, and in a wall channel down to the USB-A charger.</title>
+<text class="tm" x="40" y="30">inside the cabinet: untouched</text>
+<rect x="30" y="70" width="600" height="30" fill="var(--wood)"/>
+<text class="tm" x="40" y="90">Cabinet bottom</text>
+<rect x="630" y="0" width="24" height="400" fill="var(--rule)"/>
+<text class="tm" x="646" y="200" text-anchor="middle" transform="rotate(-90 646 200)">Wall, channel in the corner</text>
+<rect x="196" y="100" width="24" height="5" fill="var(--hinge)"/>
+<circle cx="200" cy="114" r="10" fill="var(--hinge)"/>
+<rect x="206" y="116" width="250" height="14" rx="3" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect x="222" y="104" width="64" height="11" rx="2" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="186" y="124" width="4" height="230" fill="var(--screen)"/>
+<rect x="190" y="124" width="14" height="230" rx="2" fill="var(--tablet)"/>
+<rect x="204" y="128" width="3" height="170" fill="var(--alu)"/>
+<rect x="190" y="232" width="14" height="14" rx="2" fill="var(--steel)" stroke="var(--alu-edge)"/>
+<path d="M 204 239 H 211 V 200" fill="none" stroke="var(--fpc)" stroke-width="3"/>
+<rect x="207" y="160" width="10" height="40" rx="2" fill="var(--hinge)" stroke="var(--alu-edge)"/>
+<rect x="207" y="136" width="10" height="24" rx="2" fill="var(--cable)" stroke="var(--alu-edge)"/>
+<rect x="240" y="100" width="390" height="10" fill="var(--sheet)" stroke="var(--muted)"/>
+<rect x="618" y="110" width="12" height="226" fill="var(--sheet)" stroke="var(--muted)"/>
+<path d="M 212 136 C 212 112, 250 128, 246 105 L 624 105 L 624 340" fill="none" stroke="var(--cable)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="590" y="340" width="40" height="34" rx="4" fill="var(--sheet)" stroke="var(--muted)"/>
+<text class="t" x="584" y="358" text-anchor="end">USB-A charger</text>
+<text class="tm" x="584" y="374" text-anchor="end">at the socket</text>
+<g stroke="var(--muted)" stroke-width="1">
+<line x1="300" y1="100" x2="300" y2="116"/>
+<line x1="294" y1="100" x2="306" y2="100"/><line x1="294" y1="116" x2="306" y2="116"/>
+<line x1="236" y1="120" x2="300" y2="176"/>
+<line x1="300" y1="116" x2="330" y2="214"/>
+<line x1="217" y1="168" x2="300" y2="262"/>
+<line x1="400" y1="110" x2="440" y2="302"/>
+</g>
+<text class="t" x="304" y="180">short loop over the pivot</text>
+<text class="t" x="334" y="218">Gap ≥ coupling thickness + 1 mm</text>
+<text class="tm" x="334" y="234">stowed, the coupling sits here</text>
+<text class="t" x="304" y="266">Coupling: adapter + plug</text>
+<text class="tm" x="304" y="282">fixed on the back</text>
+<text class="t" x="304" y="318">Cable channel beside the tablet</text>
+<text class="tm" x="304" y="334">to the wall, in cabinet colour</text>
+</svg>
+</div>
+<figcaption>Flipped down solid, stowed dashed. The channel runs beside the stowed tablet, not above it.</figcaption>
+</figure>
+    <h3>Option 3: pocket and groove from below</h3>
+<figure class="pdwg">
+<div class="frame">
+<svg viewBox="0 0 700 400" role="img" aria-labelledby="pd5">
+<title id="pd5">Side view, option 3: a pocket for the coupling and a groove for the charging cable routed into the cabinet bottom from below, not through. Stowed, coupling and cable sit flush in the wood.</title>
+<text class="tm" x="40" y="30">inside the cabinet: untouched</text>
+<rect x="30" y="70" width="600" height="30" fill="var(--wood)"/>
+<text class="tm" x="40" y="90">Cabinet bottom</text>
+<rect x="220" y="88" width="70" height="12" fill="var(--sheet)" stroke="var(--ok)" stroke-dasharray="3 2"/>
+<rect x="240" y="93" width="390" height="7" fill="var(--sheet)" stroke="var(--ok)" stroke-dasharray="3 2"/>
+<rect x="630" y="0" width="24" height="400" fill="var(--rule)"/>
+<text class="tm" x="646" y="200" text-anchor="middle" transform="rotate(-90 646 200)">Wall, channel in the corner</text>
+<rect x="196" y="100" width="24" height="5" fill="var(--hinge)"/>
+<circle cx="200" cy="114" r="10" fill="var(--hinge)"/>
+<rect x="206" y="104" width="250" height="14" rx="3" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect x="223" y="90" width="64" height="11" rx="2" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="186" y="124" width="4" height="230" fill="var(--screen)"/>
+<rect x="190" y="124" width="14" height="230" rx="2" fill="var(--tablet)"/>
+<rect x="204" y="128" width="3" height="170" fill="var(--alu)"/>
+<rect x="190" y="232" width="14" height="14" rx="2" fill="var(--steel)" stroke="var(--alu-edge)"/>
+<path d="M 204 239 H 211 V 200" fill="none" stroke="var(--fpc)" stroke-width="3"/>
+<rect x="207" y="160" width="10" height="40" rx="2" fill="var(--hinge)" stroke="var(--alu-edge)"/>
+<rect x="207" y="136" width="10" height="24" rx="2" fill="var(--cable)" stroke="var(--alu-edge)"/>
+<rect x="618" y="100" width="12" height="236" fill="var(--sheet)" stroke="var(--muted)"/>
+<path d="M 212 136 C 212 110, 252 124, 248 97 L 624 97 L 624 340" fill="none" stroke="var(--cable)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="590" y="340" width="40" height="34" rx="4" fill="var(--sheet)" stroke="var(--muted)"/>
+<text class="t" x="584" y="358" text-anchor="end">USB-A charger</text>
+<text class="tm" x="584" y="374" text-anchor="end">at the socket</text>
+<g stroke="var(--muted)" stroke-width="1">
+<line x1="255" y1="88" x2="290" y2="46"/>
+<line x1="440" y1="93" x2="460" y2="46"/>
+<line x1="240" y1="122" x2="300" y2="176"/>
+<line x1="350" y1="118" x2="320" y2="216"/>
+</g>
+<text class="t" x="240" y="40">Pocket for the coupling</text>
+<text class="t" x="430" y="40">Groove for the cable</text>
+<text class="t" x="304" y="180">short loop over the pivot</text>
+<text class="t" x="304" y="230">stowed: the tablet sits close,</text>
+<text class="tm" x="304" y="246">coupling and cable sit flush in the wood</text>
+</svg>
+</div>
+<figcaption>Pocket and groove dashed. The groove runs beside the stowed tablet.</figcaption>
+</figure>
   </section>
 
   <section>
