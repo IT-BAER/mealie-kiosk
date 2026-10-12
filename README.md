@@ -1,20 +1,34 @@
 # Mealie Kiosk
 
-Android home-screen app that turns a wall-mounted tablet into a kitchen display for a self-hosted
-[Mealie](https://github.com/mealie-recipes/mealie) server.
+A kitchen tablet for a self-hosted [Mealie](https://github.com/mealie-recipes/mealie) server, built
+end to end: a flip-down mount under the wall cabinet and the Android kiosk app that runs on it.
+Flip the tablet down to cook and it wakes into the recipe list; flip it up and it lies flat under
+the cabinet with the display off.
 
 ![Tablet under a kitchen cabinet showing the Mealie recipe list](docs/img/1.webp)
 
-- Fullscreen WebView on your Mealie server, landscape, system bars hidden. Other hosts are blocked.
+## The mount
+
+- A friction hinge (Ganter GN 437, 40 mm) under the cabinet floor holds the tablet in any position.
+- The hinge is bolted to a 2 mm aluminium plate that is glued to the tablet's back with VHB tape.
+  Nothing is drilled in the tablet.
+- Two stacked pot magnets hold it flipped up.
+- A 90-degree flat USB-C cable and a coupler stay fixed on the tablet; only the charging cable moves,
+  in a short loop over the axis, and runs under the cabinet to the wall.
+
+Step-by-step build guide with parts list, drawings and photos:
+[English](https://it-baer.github.io/mealie-kiosk/) · [Deutsch](https://it-baer.github.io/mealie-kiosk/de.html).
+
+## The app
+
+- Android home-screen app: fullscreen WebView on your Mealie server, landscape, system bars hidden.
+  Other hosts are blocked.
 - Kiosk layout without server changes: no app bar or drawer, three recipe columns, and a button row
   for Back, Meal plan, Shopping list and Search. German labels when the tablet language is German.
 - Flip-down mount support: stowed flat under a cabinet with the screen facing down, the display
   sleeps; flipped down past 50 degrees it wakes into the recipe list (40 degrees back, held 400 ms).
 - Offline German voice commands in Mealie's cook mode (Vosk). The microphone is off everywhere else.
 - Retries every 5 s while Mealie is not reachable, for example when Wi-Fi is not up after boot.
-
-The mount build guide (parts, drilling, cable routing) is on the project page:
-[English](https://it-baer.github.io/mealie-kiosk/) · [Deutsch](https://it-baer.github.io/mealie-kiosk/de.html).
 
 ## Requirements
 
