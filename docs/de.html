@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablet-Scharnier Küche</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+  /* Layout: one calm reading column. Photos carry the build, numbered steps carry the order, oak accent marks what to do. */
+  :root {
+    --bg: #f5f5f2;
+    --surface: #ffffff;
+    --ink: #1c1e20;
+    --muted: #5d6166;
+    --line: #e1e1dc;
+    --accent: #8a5419;
+    --accent-soft: #f3e8da;
+    --ok: #2f6b3f;
+    --ok-soft: #e3f0e5;
+    --code: #eeeeea;
+    --f-head: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --f-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    /* drawing */
+    --d-tablet: #33383e;
+    --d-alu: #c9ced3;
+    --d-alu-edge: #8c959d;
+    --d-hinge: #17191b;
+    --d-steel: #9aa3aa;
+    --d-cable: #f4f4f2;
+    --d-cable-edge: #8c959d;
+    --d-flat: #17191b;
+    --d-wood: #d9c4a0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #141516;
+      --surface: #1c1e20;
+      --ink: #e8e8e4;
+      --muted: #a0a4a8;
+      --line: #2e3133;
+      --accent: #e3a25a;
+      --accent-soft: #3a2a18;
+      --ok: #86c995;
+      --ok-soft: #1d3324;
+      --code: #26292b;
+      --d-tablet: #0c0d0e;
+      --d-alu: #8d969e;
+      --d-alu-edge: #b8c1c8;
+      --d-hinge: #4a5057;
+      --d-steel: #c1c9cf;
+      --d-cable: #e8e8e4;
+      --d-cable-edge: #6b737a;
+      --d-flat: #5a6067;
+      --d-wood: #7a6a50;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #141516;
+    --surface: #1c1e20;
+    --ink: #e8e8e4;
+    --muted: #a0a4a8;
+    --line: #2e3133;
+    --accent: #e3a25a;
+    --accent-soft: #3a2a18;
+    --ok: #86c995;
+    --ok-soft: #1d3324;
+    --code: #26292b;
+    --d-tablet: #0c0d0e;
+    --d-alu: #8d969e;
+    --d-alu-edge: #b8c1c8;
+    --d-hinge: #4a5057;
+    --d-steel: #c1c9cf;
+    --d-cable: #e8e8e4;
+    --d-cable-edge: #6b737a;
+    --d-flat: #5a6067;
+    --d-wood: #7a6a50;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 17px/1.65 var(--f-body); }
+  .page { max-width: 760px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 96px; display: grid; gap: 64px; }
+  h1, h2, h3 { font-family: var(--f-head); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(34px, 6.4vw, 50px); font-weight: 750; font-stretch: 87.5%; line-height: 1.05; }
+  h2 { font-size: 28px; font-weight: 700; font-stretch: 87.5%; line-height: 1.2; }
+  h3 { font-size: 20px; font-weight: 700; font-stretch: 92%; line-height: 1.3; }
+  p, ul, ol { margin: 0; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  code { font: 0.85em var(--f-mono); background: var(--code); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+  .muted { color: var(--muted); }
+  section { display: grid; gap: 22px; }
+  .page > *, section > *, header > * { min-width: 0; }
+  .eyebrow { font: 600 13px/1 var(--f-head); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+  /* header */
+  header { display: grid; gap: 18px; }
+  .lead { font-size: 20px; line-height: 1.55; max-width: 60ch; }
+  .byline { font-size: 15px; color: var(--muted); }
+  .hero { margin: 8px 0 0; display: grid; gap: 10px; }
+  img { display: block; width: 100%; height: auto; border-radius: 10px; background: var(--line); }
+  figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  figcaption { font-size: 15px; line-height: 1.5; color: var(--muted); }
+
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 0; }
+  .facts div { background: var(--surface); padding: 12px 16px; }
+  .facts dt { font: 600 12px/1.3 var(--f-head); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 4px 0 0; font: 600 16px/1.35 var(--f-head); font-stretch: 92%; }
+
+  /* how it works */
+  .how { display: grid; gap: 14px; padding: 0; list-style: none; }
+  .how li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+  .how li::before { content: ""; width: 10px; height: 10px; margin-top: 9px; border-radius: 50%; background: var(--accent); justify-self: center; }
+  .pair { display: grid; gap: 14px; }
+
+  /* parts */
+  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 15.5px; line-height: 1.45; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child td, tr:last-child th { border-bottom: 0; }
+  thead th { font: 600 12px/1.3 var(--f-head); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--bg); }
+  td.n { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; width: 1%; }
+  td small { display: block; color: var(--muted); font-size: 14px; }
+  .stock { columns: 2 240px; column-gap: 32px; padding-left: 20px; }
+  .stock li { break-inside: avoid; margin-bottom: 4px; }
+
+  /* steps */
+  ol.steps { list-style: none; padding: 0; display: grid; gap: 0; counter-reset: s; }
+  ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 0 16px; padding-block: 22px; border-top: 1px solid var(--line); }
+  ol.steps > li:first-child { border-top: 0; padding-top: 4px; }
+  ol.steps > li::before {
+    content: counter(s); grid-row: 1 / span 3; width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+    font: 700 16px/1 var(--f-head); font-variant-numeric: tabular-nums;
+  }
+  .step { display: grid; gap: 8px; min-width: 0; }
+  .check { font-size: 15.5px; color: var(--muted); }
+  .check b { color: var(--ink); }
+  .step figure { margin-top: 6px; max-width: 420px; }
+
+  .note { background: var(--accent-soft); border-radius: 10px; padding: 14px 18px; }
+  .note b:first-child { font-family: var(--f-head); }
+
+  /* results */
+  ul.results { list-style: none; padding: 0; display: grid; gap: 10px; }
+  ul.results li { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+  .pill { font: 700 12px/1 var(--f-head); letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 9px; border-radius: 99px; background: var(--ok-soft); color: var(--ok); white-space: nowrap; }
+
+  /* app */
+  pre { margin: 0; overflow-x: auto; background: var(--code); border-radius: 10px; padding: 14px 16px; font: 14px/1.6 var(--f-mono); }
+  .rows { display: grid; gap: 14px; }
+  .rows p b:first-child { font-family: var(--f-head); }
+  dl.kv { margin: 0; display: grid; grid-template-columns: max-content 1fr; border-top: 1px solid var(--line); }
+  dl.kv dt, dl.kv dd { padding: 9px 0; border-bottom: 1px solid var(--line); }
+  dl.kv dt { font: 600 15px/1.5 var(--f-head); color: var(--muted); padding-right: 20px; }
+  dl.kv dd { margin: 0; font-variant-numeric: tabular-nums; }
+  @media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dt { border-bottom: 0; padding-bottom: 0; } }
+
+  /* drawing */
+  .dwg { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+  svg { display: block; width: 100%; min-width: 520px; height: auto; }
+  .dim { font: 500 13px var(--f-head); fill: var(--muted); font-variant-numeric: tabular-nums; }
+  .co circle { fill: var(--accent); }
+  .co text { font: 700 13px var(--f-head); fill: var(--surface); }
+  .lead-line { stroke: var(--accent); stroke-width: 1.2; fill: none; }
+  ol.legend { padding-left: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 24px; counter-reset: l; font-size: 15.5px; }
+  ol.legend li { counter-increment: l; display: grid; grid-template-columns: 26px 1fr; gap: 8px; }
+  ol.legend li::before { content: counter(l); width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--accent); color: var(--surface); display: grid; place-items: center; font: 700 12px/1 var(--f-head); }
+
+  footer { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <p class="eyebrow">Bauanleitung</p>
+    <h1>Klapphalterung für das Küchentablet</h1>
+    <p class="lead">Ein Tablet hängt an einem Reibscharnier unter dem Hängeschrank. Zum Kochen klappt man es herunter, danach verschwindet es flach unter dem Schrankboden. Keine Bohrung ins Tablet, eine kleine Alu-Platte trägt die Last.</p>
+    <p class="byline">IT-BAER · Oktober 2026</p>
+    <p class="byline"><a href="index.html" hreflang="en">English</a> · <a href="https://github.com/IT-BAER/mealie-kiosk">GitHub</a></p>
+    <figure class="hero">
+      <img src="img/1.webp" width="1400" height="1075" alt="Tablet heruntergeklappt unter dem Hängeschrank, quer, zeigt eine Rezeptliste">
+      <figcaption>Heruntergeklappt: Die Rezept-App ist an, Scharnier und Kabel sind von vorne kaum zu sehen.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>Tablet</dt><dd>Galaxy Tab A7 Lite (SM-T220), 366 g</dd></div>
+      <div><dt>Scharnier</dt><dd>Ganter GN 437, 40 mm, Reibung einstellbar</dd></div>
+      <div><dt>Am Tablet</dt><dd>nur geklebt, nichts gebohrt</dd></div>
+      <div><dt>Strom</dt><dd>dauerhaft per USB-C</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <h2>So funktioniert es</h2>
+    <ul class="how">
+      <li><span>Auf die Rückseite des Tablets ist eine 2-mm-Alu-Platte geklebt. Das Scharnier ist an diese Platte geschraubt, nicht ans Tablet. So verteilt sich die Kraft beim Klappen auf fast die ganze Rückseite.</span></li>
+      <li><span>Der zweite Flügel des Scharniers ist an den Schrankboden geschraubt. Die Reibung im Scharnier hält das Tablet in jeder Stellung.</span></li>
+      <li><span>Hochgeklappt hält ein Topfmagnet im Schrankboden ein Stahlplättchen auf der Platte. Das Tablet liegt dann flach, das Display zeigt nach unten.</span></li>
+      <li><span>Ein Flachkabel und eine USB-C-Kupplung bleiben fest am Tablet. Nur das Ladekabel bewegt sich in einer kurzen Schlaufe über die Achse.</span></li>
+      <li><span>Eine eigene App merkt am Beschleunigungssensor, ob das Tablet hoch- oder heruntergeklappt ist, und schaltet das Display aus und ein. Details unten.</span></li>
+    </ul>
+    <div class="pair">
+      <figure>
+        <img src="img/4.webp" width="1400" height="578" alt="Tablet hochgeklappt, liegt flach unter dem Schrankboden, Display nach unten">
+        <figcaption>Hochgeklappt, von vorne unten.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/5.webp" width="1400" height="357" alt="Tablet hochgeklappt von der Seite: Scharnier zwischen Schrankboden und Tablet, rechts die Kabelschlaufe">
+        <figcaption>Hochgeklappt, von der Seite. Rechts die Kabelschlaufe.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teile</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Teil</th><th>Wofür</th><th class="n">Menge</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.amazon.de/dp/B0C5XTYXSD">Ganter GN 437-ZD-40-40-A-SW</a><small>Reibscharnier, Zinkdruckguss, 40 × 40 mm</small></td><td>Drehachse</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0GQ3XJVRK">Alu-Platte 6061, 2 × 100 × 150 mm</a><small>Winfox, zugeschnitten</small></td><td>Träger auf der Tablet-Rückseite</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B00EDLPG7Y">3M VHB 5952F</a><small>19 mm × 3 m, 1,1 mm dick</small></td><td>Platte und Kupplung ans Tablet kleben</td><td class="n">1 Rolle</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0FKN2BW99">Topfmagnet 25 mm mit Loch, mit Stahlplättchen</a><small>BFANGZ, 10er-Pack, selbstklebende Plättchen</small></td><td>Hält das Tablet hochgeklappt</td><td class="n">2 Magnete, 1 Plättchen</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0FBFPRX3L">USB-C-Flachkabel, beidseitig 90°</a><small>DAOKAI, 75 mm und 150 mm im Set</small></td><td>Tablet zur Kupplung</td><td class="n">1 (75 mm)</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0BCDGM3SZ">USB-C-Kupplung, Buchse auf Buchse</a><small>Tolesum, 27,5 × 15 × 8 mm, 2er-Pack</small></td><td>Übergang zum Ladekabel</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B07VD62BV7">Ladekabel USB-A auf USB-C, 2 m</a><small>MOOOV 732060, weiß</small></td><td>Zur Steckdose</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0BSCDVZ8C">Kegelsenker HSS 10,4 mm, 90°</a><small>AM-Zerspanungstechnik</small></td><td>Werkzeug: Senkung für die Schraubenköpfe</td><td class="n">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Aus der Werkstattkiste</h3>
+    <ul class="stock">
+      <li>2 Senkkopfschrauben M3, etwa 16 mm</li>
+      <li>2 Unterlegscheiben M3, 2 Muttern M3 (selbstsichernd ist besser)</li>
+      <li>2 Holzschrauben für das Scharnier</li>
+      <li>1 Holzschraube für die Magnete</li>
+      <li>USB-A-Netzteil</li>
+      <li>Selbstklebende Möbelfolie im Dekor des Schranks</li>
+      <li>Bohrmaschine, Metallbohrer 3,2 mm, Holzbohrer zum Vorbohren</li>
+      <li>Innensechskant 2,5 mm, Schraubendreher, Isopropanol</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Bauen</h2>
+    <p class="note"><b>Vor dem Start:</b> Erst die Platte mit Scharnier fertig verschrauben, dann ans Tablet kleben. Am Tablet selbst wird nicht gebohrt. Das VHB-Band braucht einen Tag, bevor es volle Last trägt.</p>
+    <ol class="steps">
+      <li>
+        <div class="step">
+          <h3>Platte anzeichnen</h3>
+          <p>Scharnier bündig an eine lange Kante der Platte legen, mittig. Durch die zwei Bohrungen des Flügels die Lochmitten anzeichnen. Diese Kante kommt später an die lange Tablet-Kante, um die das Tablet klappt.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Bohren und senken</h3>
+          <p>Mit 3,2 mm durch die Platte bohren. Dann von der Seite, die aufs Tablet kommt, mit dem Kegelsenker senken, bis der Schraubenkopf bündig sitzt.</p>
+          <p class="check"><b>Prüfen:</b> Mit dem Fingernagel über die Senkung fahren. Nichts darf hängen bleiben, sonst drückt der Kopf aufs Tablet.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Scharnier an die Platte schrauben</h3>
+          <p>Senkkopfschrauben M3 von der Tablet-Seite durch Platte und Flügel stecken, oben Scheibe und Mutter. Fest anziehen: Die M3 hat in der Bohrung des Flügels Spiel, nur die Klemmung hält.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Platte aufs Tablet kleben</h3>
+          <p>Tablet-Rückseite und Platte mit Isopropanol entfetten. VHB-Streifen nebeneinander auf die Platte, fast vollflächig. Platte bündig an die Klappkante setzen, zur USB-C-Seite verschoben, damit die Kamera frei bleibt. Fest andrücken.</p>
+          <p class="check"><b>Warten:</b> laut 3M 50 % Haftung nach 20 Minuten, 90 % nach 24 Stunden. Erst am nächsten Tag montieren.</p>
+          <figure>
+            <img src="img/3.webp" width="1096" height="1400" alt="Rückseite des Tablets: Alu-Platte bündig an der Klappkante, Scharnier mit zwei Schrauben im Schrankboden, rundes Stahlplättchen auf der Platte, Topfmagnet im Schrankboden, Kabel an der kurzen Seite">
+            <figcaption>Fertig montiert, Rückseite: Platte, Scharnier, Stahlplättchen, Magnet und Kabel.</figcaption>
+          </figure>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Stahlplättchen aufkleben</h3>
+          <p>Das selbstklebende Plättchen aus dem Magnet-Set auf die Platte kleben, nahe der Ecke gegenüber dem Scharnier. Dort hat der Magnet den längsten Hebel.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Kabel am Tablet</h3>
+          <p>Das 75-mm-Flachkabel in die USB-C-Buchse stecken und flach zur Rückseite umlegen. Die Kupplung mit VHB im Streifen neben der Platte festkleben und das Flachkabel einstecken. Das Ladekabel kommt in die Kupplung. So wirkt kein Zug auf die Buchse des Tablets.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Scharnier an den Schrank schrauben</h3>
+          <p>Tablet hochgeklappt unter den Schrank halten und ausrichten. Den freien Flügel nahe der Vorderkante an den Schrankboden halten, vorbohren und mit zwei Holzschrauben festschrauben.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Magnet setzen</h3>
+          <p>Zwei Topfmagnete aufeinander stapeln und mit einer Holzschraube in den Schrankboden schrauben, genau über dem Stahlplättchen. Der Stapel gleicht die Höhe des Scharniers aus, so liegt das Tablet hochgeklappt gerade an.</p>
+          <p class="check"><b>Prüfen:</b> Hochklappen. Das Plättchen rastet am Magnet ein und das Tablet bleibt oben.</p>
+          <figure>
+            <img src="img/2.webp" width="1194" height="1400" alt="Schrankboden von unten: gestapelte Topfmagnete, Scharnier an der Vorderkante, Tablet hängt senkrecht, weißes Kabel an der Scharnierkante">
+            <figcaption>Von unten: Magnetstapel im Schrankboden, Scharnier an der Vorderkante.</figcaption>
+          </figure>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Ladekabel verlegen</h3>
+          <p>Das Ladekabel in einer kurzen Schlaufe über die Achse führen, dann unter dem Schrank entlang zur Wand. Mit Möbelfolie im Dekor des Schranks überkleben, so ist es kaum zu sehen. Am Ende das USB-A-Netzteil.</p>
+          <p class="check"><b>Prüfen:</b> Hochgeklappt liegt das Kabel neben dem Tablet, nicht darunter.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Reibung einstellen</h3>
+          <p>Die Stellschraube am Scharnier (Innensechskant 2,5 mm) weit lösen, dann in kleinen Schritten anziehen, bis das Tablet jede Stellung hält. Höchstens 0,5 N·m.</p>
+          <p class="check"><b>Prüfen:</b> Das Tablet bleibt, wo man es hinstellt, und lässt sich mit leichtem Druck bewegen. Sinkt es ab: etwas fester. Geht es schwer: etwas lösen.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Getestet</h2>
+    <ul class="results">
+      <li><span class="pill">bestanden</span><span><b>Magnet:</b> Das Plättchen liegt hochgeklappt am Magnet an und hält das Tablet oben.</span></li>
+      <li><span class="pill">bestanden</span><span><b>Klappen:</b> Mehr als 20-mal geklappt, das Laden bricht dabei nicht ab.</span></li>
+      <li><span class="pill">bestanden</span><span><b>Laden:</b> Netzteil durchgehend erkannt, Akku in 29 Minuten von 30 % auf 42 %. Die ersten 12 Minuten mit Display an.</span></li>
+      <li><span class="pill">bestanden</span><span><b>Display:</b> Hochgeklappt geht es nach etwa einer Sekunde aus und bleibt aus. Heruntergeklappt ist die Rezept-App sofort da.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Die App: Display aus beim Hochklappen</h2>
+    <p>Das Tablet läuft als Kiosk mit einer eigenen Android-App. Sie ist der Startbildschirm und zeigt die Rezepte aus einer selbst gehosteten Mealie-Instanz. Der Code ist nicht veröffentlicht, darum hier die Funktionsweise zum Nachbauen.</p>
+    <div class="rows">
+      <p><b>Lage erkennen.</b> Ein Vordergrund-Dienst liest den Beschleunigungssensor, auch bei ausgeschaltetem Display. Ein Partial Wake Lock hält dafür die CPU wach. Aus dem Schwerevektor rechnet er den Winkel zwischen Display und Boden aus: 0° heißt flach mit dem Display nach unten, 90° heißt senkrecht.</p>
+      <p><b>Mit Hysterese schalten.</b> Ab 50° gilt das Tablet als heruntergeklappt, unter 40° als hochgeklappt. Der Winkel muss 400 ms stabil sein. So schaltet nichts beim Antippen oder beim Durchschwingen.</p>
+      <p><b>Ausschalten.</b> Hochgeklappt ruft die App <code>DevicePolicyManager.lockNow()</code> auf. Dafür ist sie Geräteadministrator, aber nur mit dem Recht <code>force-lock</code>.</p>
+      <p><b>Einschalten.</b> Heruntergeklappt holt ein kurzer Wake Lock (<code>FULL_WAKE_LOCK</code> mit <code>ACQUIRE_CAUSES_WAKEUP</code>, 3 s) das Display zurück. Danach startet die App ihre Activity neu. Die Activity darf über dem Sperrbildschirm liegen (<code>setShowWhenLocked</code>) und hält das Display an, solange sie sichtbar ist.</p>
+    </div>
+    <p class="note"><b>Falle:</b> Die Activity darf nicht zusätzlich <code>setTurnScreenOn(true)</code> setzen. Jeder Neustart der Activity schärft dieses Flag neu. Beim nächsten <code>lockNow()</code> erscheint der Sperrbildschirm, die Activity wird darüber wieder sichtbar und schaltet das Display nach 14 ms wieder ein. Gemessen auf diesem Tablet.</p>
+    <h3>Einrichtung per adb</h3>
+    <pre>adb shell cmd role add-role-holder android.app.role.HOME &lt;paket&gt; 0
+adb shell dpm set-active-admin &lt;paket&gt;/.LockAdmin
+adb shell settings put global stay_on_while_plugged_in 0
+adb shell dumpsys deviceidle whitelist +&lt;paket&gt;
+adb shell pm grant &lt;paket&gt; android.permission.POST_NOTIFICATIONS
+adb shell appops set &lt;paket&gt; SYSTEM_ALERT_WINDOW allow</pre>
+    <dl class="kv">
+      <dt>Startbildschirm</dt><dd>Die App startet nach jedem Neustart selbst und bringt den Sensor-Dienst mit.</dd>
+      <dt>Geräteadmin</dt><dd>Nötig für <code>lockNow()</code>. Ohne ihn bleibt das Display einfach an.</dd>
+      <dt>stay_on_while_plugged_in</dt><dd>Muss 0 sein. Sonst hält das dauerhaft steckende Ladekabel das Display an.</dd>
+      <dt>Akku-Ausnahme</dt><dd>Damit Android den Dienst nicht schlafen legt.</dd>
+      <dt>Benachrichtigungen</dt><dd>Samsung bricht das Aufwecken ab, wenn die App keine Benachrichtigungen senden darf.</dd>
+      <dt>Overlay-Recht</dt><dd>Ohne es blockiert Android den Activity-Start aus dem Dienst. Das Display leuchtet dann 3 s und geht wieder aus.</dd>
+    </dl>
+    <p class="muted">Dauerstrom ist unkritisch, weil Samsungs Akkuschutz das Laden bei 80 % stoppt.</p>
+  </section>
+
+  <section>
+    <h2>Technischer Anhang</h2>
+    <figure>
+      <div class="dwg">
+        <svg viewBox="0 0 640 400" role="img" aria-labelledby="dt">
+          <title id="dt">Rückseite des Tablets, hochgeklappt, von oben durch den Schrankboden gesehen, Maßstab 2 Pixel pro Millimeter. Nummern siehe Liste unter der Zeichnung.</title>
+          <line x1="30" y1="60" x2="480" y2="60" stroke="var(--muted)" stroke-dasharray="6 5"/>
+          <rect x="40" y="60" width="425" height="249.4" rx="14" fill="var(--d-tablet)"/>
+          <rect x="54" y="72" width="16" height="16" rx="4" fill="var(--d-alu-edge)"/>
+          <rect x="141" y="62" width="300" height="200" rx="3" fill="var(--d-alu)" stroke="var(--d-alu-edge)"/>
+          <circle cx="400" cy="222" r="14" fill="var(--d-steel)" stroke="var(--d-alu-edge)"/>
+          <rect x="212.5" y="60" width="80" height="40" fill="var(--d-hinge)"/>
+          <rect x="208" y="52" width="89" height="16" rx="7" fill="var(--d-hinge)" stroke="var(--d-alu-edge)"/>
+          <g fill="var(--d-alu)" stroke="var(--d-steel)" stroke-width="2"><circle cx="227.5" cy="85" r="5"/><circle cx="277.5" cy="85" r="5"/></g>
+          <path d="M 465 236 H 456 V 214" fill="none" stroke="var(--d-flat)" stroke-width="5"/>
+          <rect x="447" y="158" width="16" height="56" rx="3" fill="var(--d-flat)" stroke="var(--d-alu-edge)"/>
+          <path d="M 455 158 V 46 Q 455 30 471 30 H 560" fill="none" stroke="var(--d-cable-edge)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 455 158 V 46 Q 455 30 471 30 H 560" fill="none" stroke="var(--d-cable)" stroke-width="3.5" stroke-linecap="round"/>
+          <g stroke="var(--muted)" stroke-width="1">
+            <line x1="40" y1="330" x2="465" y2="330"/><line x1="40" y1="324" x2="40" y2="336"/><line x1="465" y1="324" x2="465" y2="336"/>
+            <line x1="20" y1="60" x2="20" y2="309.4"/><line x1="14" y1="60" x2="26" y2="60"/><line x1="14" y1="309.4" x2="26" y2="309.4"/>
+          </g>
+          <text class="dim" x="252.5" y="352" text-anchor="middle">212,5 mm</text>
+          <path d="M 560 30 H 610" stroke="var(--d-cable-edge)" stroke-width="3" stroke-dasharray="4 5"/><text class="dim" x="566" y="20">zur Wand</text>
+          <text class="dim" x="10" y="185" text-anchor="middle" transform="rotate(-90 10 185)">124,7 mm</text>
+          <text class="dim" x="40" y="388">Achse an der Schrankvorderkante (oben), Wand unten</text>
+          <g>
+            <path class="lead-line" d="M 252 100 L 252 128"/><g class="co"><circle cx="252" cy="140" r="12"/><text x="252" y="144.5" text-anchor="middle">1</text></g>
+            <g class="co"><circle cx="190" cy="190" r="12"/><text x="190" y="194.5" text-anchor="middle">2</text></g>
+            <path class="lead-line" d="M 400 222 L 360 222"/><g class="co"><circle cx="348" cy="222" r="12"/><text x="348" y="226.5" text-anchor="middle">3</text></g>
+            <path class="lead-line" d="M 466 238 L 520 262"/><g class="co"><circle cx="532" cy="266" r="12"/><text x="532" y="270.5" text-anchor="middle">4</text></g>
+            <path class="lead-line" d="M 464 186 L 520 186"/><g class="co"><circle cx="532" cy="186" r="12"/><text x="532" y="190.5" text-anchor="middle">5</text></g>
+            <path class="lead-line" d="M 456 100 L 520 110"/><g class="co"><circle cx="532" cy="112" r="12"/><text x="532" y="116.5" text-anchor="middle">6</text></g>
+            <path class="lead-line" d="M 62 88 L 80 120"/><g class="co"><circle cx="86" cy="132" r="12"/><text x="86" y="136.5" text-anchor="middle">7</text></g>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Hochgeklappt, von oben durch den Schrankboden gesehen. Lage von Plättchen und Kupplung nach Foto, nicht gemessen.</figcaption>
+    </figure>
+    <ol class="legend">
+      <li>Scharnier GN 437, 40 mm, mittig an der Klappkante. Lochabstand 25 mm.</li>
+      <li>Alu-Platte 100 × 150 × 2 mm, bündig an der Klappkante.</li>
+      <li>Stahlplättchen für den Magnetstapel.</li>
+      <li>Flachkabel 75 mm aus der USB-C-Buchse.</li>
+      <li>USB-C-Kupplung, mit VHB geklebt.</li>
+      <li>Ladekabel 2 m, Schlaufe über die Achse.</li>
+      <li>Kamera bleibt frei.</li>
+    </ol>
+    <dl class="kv">
+      <dt>Haltemoment</dt><dd>etwa 0,22 N·m (366 g, Schwerpunkt etwa 62 mm von der Achse), gerechnet</dd>
+      <dt>Scharnierreibung</dt><dd>bis etwa 2 N·m, also reichlich Reserve. Darum fein einstellen.</dd>
+      <dt>Warum bündig</dt><dd>Die Scharnierbohrungen liegen 12,5 mm von der Achse. Bündig an der Kante liegen sie etwa 11 mm tief in der Platte, genug Material um die 3,2-mm-Löcher.</dd>
+      <dt>Warum M3</dt><dd>Ein M3-Senkkopf ist 1,7 mm hoch und passt in 2 mm Blech. M5 bräuchte 3 mm, sonst bleibt nur eine Messerkante.</dd>
+      <dt>Warum eine Platte</dt><dd>Ein direkt aufs Tablet geklebter Flügel würde bei jedem Klappen an seiner Vorderkante abgeschält. Die Platte verteilt die Last auf fast die ganze Rückseite.</dd>
+    </dl>
+  </section>
+
+  <footer>Werte zu Scharnier und Tablet aus den Datenblättern von Elesa+Ganter und Samsung. Teile-Links zu Amazon.de, ohne Partnerprogramm.</footer>
+</main>
+
+</body>
+</html>

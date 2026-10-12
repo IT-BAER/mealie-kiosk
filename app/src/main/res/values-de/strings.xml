@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_title">Mealie-Serveradresse</string>
+    <string name="setup_open">Öffnen</string>
+    <string name="setup_invalid">http- oder https-Adresse eingeben</string>
+    <string name="unreachable">Mealie nicht erreichbar (%1$s).\nNeuer Versuch in 5 Sekunden</string>
+</resources>

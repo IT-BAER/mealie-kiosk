@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kitchen Tablet Hinge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+  /* Layout: one calm reading column. Photos carry the build, numbered steps carry the order, oak accent marks what to do. */
+  :root {
+    --bg: #f5f5f2;
+    --surface: #ffffff;
+    --ink: #1c1e20;
+    --muted: #5d6166;
+    --line: #e1e1dc;
+    --accent: #8a5419;
+    --accent-soft: #f3e8da;
+    --ok: #2f6b3f;
+    --ok-soft: #e3f0e5;
+    --code: #eeeeea;
+    --f-head: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --f-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    /* drawing */
+    --d-tablet: #33383e;
+    --d-alu: #c9ced3;
+    --d-alu-edge: #8c959d;
+    --d-hinge: #17191b;
+    --d-steel: #9aa3aa;
+    --d-cable: #f4f4f2;
+    --d-cable-edge: #8c959d;
+    --d-flat: #17191b;
+    --d-wood: #d9c4a0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #141516;
+      --surface: #1c1e20;
+      --ink: #e8e8e4;
+      --muted: #a0a4a8;
+      --line: #2e3133;
+      --accent: #e3a25a;
+      --accent-soft: #3a2a18;
+      --ok: #86c995;
+      --ok-soft: #1d3324;
+      --code: #26292b;
+      --d-tablet: #0c0d0e;
+      --d-alu: #8d969e;
+      --d-alu-edge: #b8c1c8;
+      --d-hinge: #4a5057;
+      --d-steel: #c1c9cf;
+      --d-cable: #e8e8e4;
+      --d-cable-edge: #6b737a;
+      --d-flat: #5a6067;
+      --d-wood: #7a6a50;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #141516;
+    --surface: #1c1e20;
+    --ink: #e8e8e4;
+    --muted: #a0a4a8;
+    --line: #2e3133;
+    --accent: #e3a25a;
+    --accent-soft: #3a2a18;
+    --ok: #86c995;
+    --ok-soft: #1d3324;
+    --code: #26292b;
+    --d-tablet: #0c0d0e;
+    --d-alu: #8d969e;
+    --d-alu-edge: #b8c1c8;
+    --d-hinge: #4a5057;
+    --d-steel: #c1c9cf;
+    --d-cable: #e8e8e4;
+    --d-cable-edge: #6b737a;
+    --d-flat: #5a6067;
+    --d-wood: #7a6a50;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 17px/1.65 var(--f-body); }
+  .page { max-width: 760px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 96px; display: grid; gap: 64px; }
+  h1, h2, h3 { font-family: var(--f-head); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(34px, 6.4vw, 50px); font-weight: 750; font-stretch: 87.5%; line-height: 1.05; }
+  h2 { font-size: 28px; font-weight: 700; font-stretch: 87.5%; line-height: 1.2; }
+  h3 { font-size: 20px; font-weight: 700; font-stretch: 92%; line-height: 1.3; }
+  p, ul, ol { margin: 0; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  code { font: 0.85em var(--f-mono); background: var(--code); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+  .muted { color: var(--muted); }
+  section { display: grid; gap: 22px; }
+  .page > *, section > *, header > * { min-width: 0; }
+  .eyebrow { font: 600 13px/1 var(--f-head); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+  /* header */
+  header { display: grid; gap: 18px; }
+  .lead { font-size: 20px; line-height: 1.55; max-width: 60ch; }
+  .byline { font-size: 15px; color: var(--muted); }
+  .hero { margin: 8px 0 0; display: grid; gap: 10px; }
+  img { display: block; width: 100%; height: auto; border-radius: 10px; background: var(--line); }
+  figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  figcaption { font-size: 15px; line-height: 1.5; color: var(--muted); }
+
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 0; }
+  .facts div { background: var(--surface); padding: 12px 16px; }
+  .facts dt { font: 600 12px/1.3 var(--f-head); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 4px 0 0; font: 600 16px/1.35 var(--f-head); font-stretch: 92%; }
+
+  /* how it works */
+  .how { display: grid; gap: 14px; padding: 0; list-style: none; }
+  .how li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+  .how li::before { content: ""; width: 10px; height: 10px; margin-top: 9px; border-radius: 50%; background: var(--accent); justify-self: center; }
+  .pair { display: grid; gap: 14px; }
+
+  /* parts */
+  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 15.5px; line-height: 1.45; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child td, tr:last-child th { border-bottom: 0; }
+  thead th { font: 600 12px/1.3 var(--f-head); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--bg); }
+  td.n { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; width: 1%; }
+  td small { display: block; color: var(--muted); font-size: 14px; }
+  .stock { columns: 2 240px; column-gap: 32px; padding-left: 20px; }
+  .stock li { break-inside: avoid; margin-bottom: 4px; }
+
+  /* steps */
+  ol.steps { list-style: none; padding: 0; display: grid; gap: 0; counter-reset: s; }
+  ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 0 16px; padding-block: 22px; border-top: 1px solid var(--line); }
+  ol.steps > li:first-child { border-top: 0; padding-top: 4px; }
+  ol.steps > li::before {
+    content: counter(s); grid-row: 1 / span 3; width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+    font: 700 16px/1 var(--f-head); font-variant-numeric: tabular-nums;
+  }
+  .step { display: grid; gap: 8px; min-width: 0; }
+  .check { font-size: 15.5px; color: var(--muted); }
+  .check b { color: var(--ink); }
+  .step figure { margin-top: 6px; max-width: 420px; }
+
+  .note { background: var(--accent-soft); border-radius: 10px; padding: 14px 18px; }
+  .note b:first-child { font-family: var(--f-head); }
+
+  /* results */
+  ul.results { list-style: none; padding: 0; display: grid; gap: 10px; }
+  ul.results li { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+  .pill { font: 700 12px/1 var(--f-head); letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 9px; border-radius: 99px; background: var(--ok-soft); color: var(--ok); white-space: nowrap; }
+
+  /* app */
+  pre { margin: 0; overflow-x: auto; background: var(--code); border-radius: 10px; padding: 14px 16px; font: 14px/1.6 var(--f-mono); }
+  .rows { display: grid; gap: 14px; }
+  .rows p b:first-child { font-family: var(--f-head); }
+  dl.kv { margin: 0; display: grid; grid-template-columns: max-content 1fr; border-top: 1px solid var(--line); }
+  dl.kv dt, dl.kv dd { padding: 9px 0; border-bottom: 1px solid var(--line); }
+  dl.kv dt { font: 600 15px/1.5 var(--f-head); color: var(--muted); padding-right: 20px; }
+  dl.kv dd { margin: 0; font-variant-numeric: tabular-nums; }
+  @media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dt { border-bottom: 0; padding-bottom: 0; } }
+
+  /* drawing */
+  .dwg { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+  svg { display: block; width: 100%; min-width: 520px; height: auto; }
+  .dim { font: 500 13px var(--f-head); fill: var(--muted); font-variant-numeric: tabular-nums; }
+  .co circle { fill: var(--accent); }
+  .co text { font: 700 13px var(--f-head); fill: var(--surface); }
+  .lead-line { stroke: var(--accent); stroke-width: 1.2; fill: none; }
+  ol.legend { padding-left: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 24px; counter-reset: l; font-size: 15.5px; }
+  ol.legend li { counter-increment: l; display: grid; grid-template-columns: 26px 1fr; gap: 8px; }
+  ol.legend li::before { content: counter(l); width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--accent); color: var(--surface); display: grid; place-items: center; font: 700 12px/1 var(--f-head); }
+
+  footer { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <p class="eyebrow">Build guide</p>
+    <h1>Flip-down mount for the kitchen tablet</h1>
+    <p class="lead">A tablet hangs from a friction hinge under the wall cabinet. Flip it down to cook, and afterwards it disappears flat under the cabinet floor. No holes in the tablet: a small aluminium plate carries the load.</p>
+    <p class="byline">IT-BAER · October 2026</p>
+    <p class="byline"><a href="de.html" hreflang="de">Deutsch</a> · <a href="https://github.com/IT-BAER/mealie-kiosk">GitHub</a></p>
+    <figure class="hero">
+      <img src="img/1.webp" width="1400" height="1075" alt="Tablet flipped down under the wall cabinet, landscape, showing a recipe list">
+      <figcaption>Flipped down: the recipe app is on, hinge and cable are hard to see from the front.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>Tablet</dt><dd>Galaxy Tab A7 Lite (SM-T220), 366 g</dd></div>
+      <div><dt>Hinge</dt><dd>Ganter GN 437, 40 mm, adjustable friction</dd></div>
+      <div><dt>On the tablet</dt><dd>glued only, nothing drilled</dd></div>
+      <div><dt>Power</dt><dd>permanent via USB-C</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <h2>How it works</h2>
+    <ul class="how">
+      <li><span>A 2 mm aluminium plate is glued to the back of the tablet. The hinge is screwed to this plate, not to the tablet. So the force from flipping spreads over almost the whole back.</span></li>
+      <li><span>The second leaf of the hinge is screwed to the cabinet floor. The friction in the hinge holds the tablet in any position.</span></li>
+      <li><span>Flipped up, a pot magnet in the cabinet floor holds a steel disc on the plate. The tablet then lies flat, display facing down.</span></li>
+      <li><span>A flat cable and a USB-C coupler stay fixed on the tablet. Only the charging cable moves, in a short loop over the axis.</span></li>
+      <li><span>A custom app uses the accelerometer to tell whether the tablet is up or down, and turns the display off and on. Details below.</span></li>
+    </ul>
+    <div class="pair">
+      <figure>
+        <img src="img/4.webp" width="1400" height="578" alt="Tablet flipped up, lying flat under the cabinet floor, display facing down">
+        <figcaption>Flipped up, seen from the front and below.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/5.webp" width="1400" height="357" alt="Tablet flipped up, side view: hinge between cabinet floor and tablet, cable loop on the right">
+        <figcaption>Flipped up, side view. The cable loop is on the right.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Parts</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Part</th><th>Purpose</th><th class="n">Qty</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.amazon.de/dp/B0C5XTYXSD">Ganter GN 437-ZD-40-40-A-SW</a><small>friction hinge, zinc die-cast, 40 × 40 mm</small></td><td>Pivot</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0GQ3XJVRK">Aluminium plate 6061, 2 × 100 × 150 mm</a><small>Winfox, cut to size</small></td><td>Carrier on the back of the tablet</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B00EDLPG7Y">3M VHB 5952F</a><small>19 mm × 3 m, 1.1 mm thick</small></td><td>Glues plate and coupler to the tablet</td><td class="n">1 roll</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0FKN2BW99">Pot magnet 25 mm with hole, with steel discs</a><small>BFANGZ, pack of 10, self-adhesive discs</small></td><td>Holds the tablet flipped up</td><td class="n">2 magnets, 1 disc</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0FBFPRX3L">USB-C flat cable, 90° on both ends</a><small>DAOKAI, 75 mm and 150 mm in the set</small></td><td>Tablet to coupler</td><td class="n">1 (75 mm)</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0BCDGM3SZ">USB-C coupler, female to female</a><small>Tolesum, 27.5 × 15 × 8 mm, pack of 2</small></td><td>Joins the charging cable</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B07VD62BV7">Charging cable USB-A to USB-C, 2 m</a><small>MOOOV 732060, white</small></td><td>To the wall socket</td><td class="n">1</td></tr>
+          <tr><td><a href="https://www.amazon.de/dp/B0BSCDVZ8C">Countersink HSS 10.4 mm, 90°</a><small>AM-Zerspanungstechnik</small></td><td>Tool: countersink for the screw heads</td><td class="n">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>From the parts bin</h3>
+    <ul class="stock">
+      <li>2 countersunk screws M3, about 16 mm</li>
+      <li>2 washers M3, 2 nuts M3 (self-locking is better)</li>
+      <li>2 wood screws for the hinge</li>
+      <li>1 wood screw for the magnets</li>
+      <li>USB-A power supply</li>
+      <li>Self-adhesive furniture film in the cabinet's finish</li>
+      <li>Drill, 3.2 mm metal bit, wood bit for pilot holes</li>
+      <li>2.5 mm hex key, screwdriver, isopropyl alcohol</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Build</h2>
+    <p class="note"><b>Before you start:</b> Screw plate and hinge together first, then glue them to the tablet. Nothing is drilled on the tablet itself. The VHB tape needs a day before it carries full load.</p>
+    <ol class="steps">
+      <li>
+        <div class="step">
+          <h3>Mark the plate</h3>
+          <p>Lay the hinge flush with one long edge of the plate, centred. Mark the hole centres through the two holes of the leaf. This edge later goes to the long tablet edge the tablet pivots on.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Drill and countersink</h3>
+          <p>Drill through the plate with 3.2 mm. Then countersink from the side that goes onto the tablet, until the screw head sits flush.</p>
+          <p class="check"><b>Check:</b> Run a fingernail over the countersink. Nothing may catch, or the head presses on the tablet.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Screw the hinge to the plate</h3>
+          <p>Push the M3 countersunk screws from the tablet side through plate and leaf, washer and nut on top. Tighten firmly: the M3 has play in the leaf's hole, only the clamping holds it.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Glue the plate to the tablet</h3>
+          <p>Degrease the tablet back and the plate with isopropyl alcohol. Lay VHB strips side by side on the plate, almost full surface. Set the plate flush with the pivot edge, shifted towards the USB-C side so the camera stays free. Press hard.</p>
+          <p class="check"><b>Wait:</b> per 3M, 50 % bond strength after 20 minutes, 90 % after 24 hours. Mount it the next day.</p>
+          <figure>
+            <img src="img/3.webp" width="1096" height="1400" alt="Back of the tablet: aluminium plate flush with the pivot edge, hinge with two screws in the cabinet floor, round steel disc on the plate, pot magnet in the cabinet floor, cable on the short side">
+            <figcaption>Fully mounted, back side: plate, hinge, steel disc, magnet and cable.</figcaption>
+          </figure>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Stick on the steel disc</h3>
+          <p>Stick the self-adhesive disc from the magnet set onto the plate, near the corner opposite the hinge. There the magnet has the longest lever.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Cable on the tablet</h3>
+          <p>Plug the 75 mm flat cable into the USB-C port and fold it flat towards the back. Glue the coupler with VHB in the strip next to the plate and plug in the flat cable. The charging cable goes into the coupler. So no pull acts on the tablet's port.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Screw the hinge to the cabinet</h3>
+          <p>Hold the tablet flipped up under the cabinet and align it. Hold the free leaf against the cabinet floor near the front edge, drill pilot holes and fix it with two wood screws.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Fit the magnet</h3>
+          <p>Stack two pot magnets and screw them into the cabinet floor with one wood screw, exactly above the steel disc. The stack makes up for the height of the hinge, so the tablet lies straight when flipped up.</p>
+          <p class="check"><b>Check:</b> Flip it up. The disc snaps to the magnet and the tablet stays up.</p>
+          <figure>
+            <img src="img/2.webp" width="1194" height="1400" alt="Cabinet floor from below: stacked pot magnets, hinge at the front edge, tablet hanging vertically, white cable at the hinge edge">
+            <figcaption>From below: magnet stack in the cabinet floor, hinge at the front edge.</figcaption>
+          </figure>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Route the charging cable</h3>
+          <p>Lead the charging cable in a short loop over the axis, then along the underside of the cabinet to the wall. Cover it with furniture film in the cabinet's finish, so it is hard to see. The USB-A power supply goes at the end.</p>
+          <p class="check"><b>Check:</b> Flipped up, the cable lies next to the tablet, not under it.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">
+          <h3>Set the friction</h3>
+          <p>Loosen the adjusting screw on the hinge (2.5 mm hex) a lot, then tighten it in small steps until the tablet holds every position. At most 0.5 N·m.</p>
+          <p class="check"><b>Check:</b> The tablet stays where you put it and moves with light pressure. If it sinks: a bit tighter. If it is stiff: loosen a bit.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Tested</h2>
+    <ul class="results">
+      <li><span class="pill">passed</span><span><b>Magnet:</b> Flipped up, the disc sits on the magnet and holds the tablet up.</span></li>
+      <li><span class="pill">passed</span><span><b>Flipping:</b> Flipped more than 20 times, charging does not drop out.</span></li>
+      <li><span class="pill">passed</span><span><b>Charging:</b> Power supply detected the whole time, battery from 30 % to 42 % in 29 minutes. Display on for the first 12 minutes.</span></li>
+      <li><span class="pill">passed</span><span><b>Display:</b> Flipped up, it turns off after about one second and stays off. Flipped down, the recipe app is there at once.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The app: display off when flipped up</h2>
+    <p>The tablet runs as a kiosk with a custom Android app. It is the home screen and shows the recipes from a self-hosted Mealie instance. The code is not published, so here is how it works, for your own build.</p>
+    <div class="rows">
+      <p><b>Detect the position.</b> A foreground service reads the accelerometer, also with the display off. A partial wake lock keeps the CPU awake for this. From the gravity vector it computes the angle between display and floor: 0° means flat with the display facing down, 90° means vertical.</p>
+      <p><b>Switch with hysteresis.</b> From 50° the tablet counts as flipped down, below 40° as flipped up. The angle must be stable for 400 ms. So nothing switches when you tap the screen or while it swings.</p>
+      <p><b>Turn off.</b> Flipped up, the app calls <code>DevicePolicyManager.lockNow()</code>. For this it is a device administrator, but only with the <code>force-lock</code> policy.</p>
+      <p><b>Turn on.</b> Flipped down, a short wake lock (<code>FULL_WAKE_LOCK</code> with <code>ACQUIRE_CAUSES_WAKEUP</code>, 3 s) brings the display back. Then the app restarts its activity. The activity may sit above the lock screen (<code>setShowWhenLocked</code>) and keeps the display on while it is visible.</p>
+    </div>
+    <p class="note"><b>Trap:</b> The activity must not also set <code>setTurnScreenOn(true)</code>. Every restart of the activity re-arms this flag. On the next <code>lockNow()</code> the lock screen appears, the activity becomes visible above it and turns the display back on 14 ms later. Measured on this tablet.</p>
+    <h3>Setup via adb</h3>
+    <pre>adb shell cmd role add-role-holder android.app.role.HOME &lt;package&gt; 0
+adb shell dpm set-active-admin &lt;package&gt;/.LockAdmin
+adb shell settings put global stay_on_while_plugged_in 0
+adb shell dumpsys deviceidle whitelist +&lt;package&gt;
+adb shell pm grant &lt;package&gt; android.permission.POST_NOTIFICATIONS
+adb shell appops set &lt;package&gt; SYSTEM_ALERT_WINDOW allow</pre>
+    <dl class="kv">
+      <dt>Home screen</dt><dd>The app starts by itself after every reboot and brings the sensor service with it.</dd>
+      <dt>Device admin</dt><dd>Needed for <code>lockNow()</code>. Without it the display simply stays on.</dd>
+      <dt>stay_on_while_plugged_in</dt><dd>Must be 0. Otherwise the permanently connected charging cable keeps the display on.</dd>
+      <dt>Battery exemption</dt><dd>So Android does not put the service to sleep.</dd>
+      <dt>Notifications</dt><dd>Samsung cancels the wake-up if the app may not post notifications.</dd>
+      <dt>Overlay permission</dt><dd>Without it Android blocks the activity start from the service. The display then lights for 3 s and goes off again.</dd>
+    </dl>
+    <p class="muted">Permanent power is not a problem, because Samsung's battery protection stops charging at 80 %.</p>
+  </section>
+
+  <section>
+    <h2>Technical appendix</h2>
+    <figure>
+      <div class="dwg">
+        <svg viewBox="0 0 640 400" role="img" aria-labelledby="dt">
+          <title id="dt">Back of the tablet, flipped up, seen from above through the cabinet floor, scale 2 pixels per millimetre. Numbers: see the list below the drawing.</title>
+          <line x1="30" y1="60" x2="480" y2="60" stroke="var(--muted)" stroke-dasharray="6 5"/>
+          <rect x="40" y="60" width="425" height="249.4" rx="14" fill="var(--d-tablet)"/>
+          <rect x="54" y="72" width="16" height="16" rx="4" fill="var(--d-alu-edge)"/>
+          <rect x="141" y="62" width="300" height="200" rx="3" fill="var(--d-alu)" stroke="var(--d-alu-edge)"/>
+          <circle cx="400" cy="222" r="14" fill="var(--d-steel)" stroke="var(--d-alu-edge)"/>
+          <rect x="212.5" y="60" width="80" height="40" fill="var(--d-hinge)"/>
+          <rect x="208" y="52" width="89" height="16" rx="7" fill="var(--d-hinge)" stroke="var(--d-alu-edge)"/>
+          <g fill="var(--d-alu)" stroke="var(--d-steel)" stroke-width="2"><circle cx="227.5" cy="85" r="5"/><circle cx="277.5" cy="85" r="5"/></g>
+          <path d="M 465 236 H 456 V 214" fill="none" stroke="var(--d-flat)" stroke-width="5"/>
+          <rect x="447" y="158" width="16" height="56" rx="3" fill="var(--d-flat)" stroke="var(--d-alu-edge)"/>
+          <path d="M 455 158 V 46 Q 455 30 471 30 H 560" fill="none" stroke="var(--d-cable-edge)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 455 158 V 46 Q 455 30 471 30 H 560" fill="none" stroke="var(--d-cable)" stroke-width="3.5" stroke-linecap="round"/>
+          <g stroke="var(--muted)" stroke-width="1">
+            <line x1="40" y1="330" x2="465" y2="330"/><line x1="40" y1="324" x2="40" y2="336"/><line x1="465" y1="324" x2="465" y2="336"/>
+            <line x1="20" y1="60" x2="20" y2="309.4"/><line x1="14" y1="60" x2="26" y2="60"/><line x1="14" y1="309.4" x2="26" y2="309.4"/>
+          </g>
+          <text class="dim" x="252.5" y="352" text-anchor="middle">212.5 mm</text>
+          <path d="M 560 30 H 610" stroke="var(--d-cable-edge)" stroke-width="3" stroke-dasharray="4 5"/><text class="dim" x="566" y="20">to the wall</text>
+          <text class="dim" x="10" y="185" text-anchor="middle" transform="rotate(-90 10 185)">124.7 mm</text>
+          <text class="dim" x="40" y="388">Axis at the cabinet front edge (top), wall at the bottom</text>
+          <g>
+            <path class="lead-line" d="M 252 100 L 252 128"/><g class="co"><circle cx="252" cy="140" r="12"/><text x="252" y="144.5" text-anchor="middle">1</text></g>
+            <g class="co"><circle cx="190" cy="190" r="12"/><text x="190" y="194.5" text-anchor="middle">2</text></g>
+            <path class="lead-line" d="M 400 222 L 360 222"/><g class="co"><circle cx="348" cy="222" r="12"/><text x="348" y="226.5" text-anchor="middle">3</text></g>
+            <path class="lead-line" d="M 466 238 L 520 262"/><g class="co"><circle cx="532" cy="266" r="12"/><text x="532" y="270.5" text-anchor="middle">4</text></g>
+            <path class="lead-line" d="M 464 186 L 520 186"/><g class="co"><circle cx="532" cy="186" r="12"/><text x="532" y="190.5" text-anchor="middle">5</text></g>
+            <path class="lead-line" d="M 456 100 L 520 110"/><g class="co"><circle cx="532" cy="112" r="12"/><text x="532" y="116.5" text-anchor="middle">6</text></g>
+            <path class="lead-line" d="M 62 88 L 80 120"/><g class="co"><circle cx="86" cy="132" r="12"/><text x="86" y="136.5" text-anchor="middle">7</text></g>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Flipped up, seen from above through the cabinet floor. Position of disc and coupler taken from a photo, not measured.</figcaption>
+    </figure>
+    <ol class="legend">
+      <li>Hinge GN 437, 40 mm, centred on the pivot edge. Hole spacing 25 mm.</li>
+      <li>Aluminium plate 100 × 150 × 2 mm, flush with the pivot edge.</li>
+      <li>Steel disc for the magnet stack.</li>
+      <li>Flat cable 75 mm from the USB-C port.</li>
+      <li>USB-C coupler, glued with VHB.</li>
+      <li>Charging cable 2 m, loop over the axis.</li>
+      <li>Camera stays free.</li>
+    </ol>
+    <dl class="kv">
+      <dt>Holding torque</dt><dd>about 0.22 N·m (366 g, centre of mass about 62 mm from the axis), calculated</dd>
+      <dt>Hinge friction</dt><dd>up to about 2 N·m, so plenty of reserve. That is why it needs fine adjustment.</dd>
+      <dt>Why flush</dt><dd>The hinge holes sit 12.5 mm from the axis. Flush with the edge they sit about 11 mm deep in the plate, enough material around the 3.2 mm holes.</dd>
+      <dt>Why M3</dt><dd>An M3 countersunk head is 1.7 mm high and fits in 2 mm sheet. M5 would need 3 mm, otherwise only a knife edge is left.</dd>
+      <dt>Why a plate</dt><dd>A leaf glued straight to the tablet would be peeled off at its front edge with every flip. The plate spreads the load over almost the whole back.</dd>
+    </dl>
+  </section>
+
+  <footer>Hinge and tablet values from the Elesa+Ganter and Samsung datasheets. Part links go to Amazon.de, no affiliate programme.</footer>
+</main>
+
+</body>
+</html>
