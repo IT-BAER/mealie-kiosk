@@ -47,4 +47,47 @@ class CommandParserTest {
             assert(g.contains("\"$it\"")) { "$it missing in $g" }
         }
     }
+
+    @Test fun englishPhrases() {
+        val en = CommandParser(Vocabulary.EN)
+        assertEquals(Command(Kind.DOWN), en.parse("down", 1f))
+        assertEquals(Command(Kind.UP), en.parse("up", 1f))
+        assertEquals(Command(Kind.NEXT), en.parse("next", 1f))
+        assertEquals(Command(Kind.PREV), en.parse("back", 1f))
+        assertEquals(Command(Kind.PREV), en.parse("previous", 1f))
+        assertEquals(Command(Kind.DONE), en.parse("done", 1f))
+        assertEquals(Command(Kind.FOCUS, 17), en.parse("step seventeen", 1f))
+        assertEquals(Command(Kind.DONE, 4), en.parse("step four done", 1f))
+        assertNull(en.parse("weiter", 1f))
+    }
+
+    @Test fun frenchPhrases() {
+        val fr = CommandParser(Vocabulary.FR)
+        assertEquals(Command(Kind.DOWN), fr.parse("descends", 1f))
+        assertEquals(Command(Kind.UP), fr.parse("monte", 1f))
+        assertEquals(Command(Kind.NEXT), fr.parse("suivant", 1f))
+        assertEquals(Command(Kind.PREV), fr.parse("précédent", 1f))
+        assertEquals(Command(Kind.PREV), fr.parse("retour", 1f))
+        assertEquals(Command(Kind.DONE), fr.parse("terminé", 1f))
+        assertEquals(Command(Kind.DONE), fr.parse("terminée", 1f))
+        assertEquals(Command(Kind.FOCUS, 17), fr.parse("étape dix-sept", 1f))
+        assertEquals(Command(Kind.DONE, 20), fr.parse("étape vingt terminée", 1f))
+        assertNull(fr.parse("étape vingt-et-un", 1f))
+    }
+
+    @Test fun languageFallsBackToGerman() {
+        assertEquals(Vocabulary.EN, Vocabulary.forLanguage("en"))
+        assertEquals(Vocabulary.FR, Vocabulary.forLanguage("fr"))
+        assertEquals(Vocabulary.DE, Vocabulary.forLanguage("de"))
+        assertEquals(Vocabulary.DE, Vocabulary.forLanguage("it"))
+    }
+
+    @Test fun grammarCoversEveryLanguage() {
+        listOf(Vocabulary.DE, Vocabulary.EN, Vocabulary.FR).forEach { v ->
+            val g = CommandParser(v).grammar()
+            (v.words.keys + v.done + v.numbers.map { "${v.step} $it" }).forEach {
+                assert(g.contains("\"$it\"")) { "$it missing in $g" }
+            }
+        }
+    }
 }
