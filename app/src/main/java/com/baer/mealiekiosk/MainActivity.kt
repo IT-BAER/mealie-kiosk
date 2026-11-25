@@ -41,6 +41,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.Lifecycle
+import java.util.Locale
 import kotlin.math.abs
 
 const val TAG = "MealieKiosk"
@@ -126,7 +127,9 @@ class MainActivity : ComponentActivity() {
             }
         })
 
-        voice = VoiceController(this, CommandParser()) { command, text ->
+        // Command words follow the system language; the pushed Vosk model has to match it.
+        val vocabulary = Vocabulary.forLanguage(Locale.getDefault().language)
+        voice = VoiceController(this, CommandParser(vocabulary)) { command, text ->
             runOnUiThread {
                 when (command.kind) {
                     Kind.DOWN -> js("mealieKiosk.scroll(1)")

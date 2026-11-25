@@ -70,17 +70,32 @@ The app also asks for the microphone the first time a recipe opens in cook mode.
 
 ## Voice commands (optional)
 
-The speech model is not in the APK. Download
-[vosk-model-small-de-0.15](https://alphacephei.com/vosk/models) (45 MB zip), unpack it and push the
-folder to the app's files directory:
+The speech model is not in the APK. Download the small [Vosk model](https://alphacephei.com/vosk/models)
+for the tablet's system language, unpack it and push the folder to the app's files directory:
+
+| System language | Model |
+|-----------------|-------|
+| German (and any language not listed) | `vosk-model-small-de-0.15` |
+| English | `vosk-model-small-en-us-0.15` |
+| French | `vosk-model-small-fr-0.22` |
 
 ```bash
 adb push vosk-model-small-de-0.15 /sdcard/Android/data/com.baer.mealiekiosk/files/model
 ```
 
-In cook mode the app understands German phrases only: `weiter`, `zurück`, `runter`, `rauf`/`hoch`,
-`schritt <eins..zwanzig>`, `erledigt`, `schritt <n> erledigt`. Other languages need another Vosk model
-and changes in `CommandParser.kt`.
+In cook mode the app understands these phrases:
+
+| Action | German | English | French |
+|--------|--------|---------|--------|
+| Scroll down | `runter` | `down` | `descends` |
+| Scroll up | `rauf`, `hoch` | `up` | `monte` |
+| Next step | `weiter` | `next` | `suivant` |
+| Previous step | `zurück` | `back`, `previous` | `précédent`, `retour` |
+| Go to step n (1–20) | `schritt <n>` | `step <n>` | `étape <n>` |
+| Check off the current step | `erledigt` | `done` | `terminé` |
+| Check off step n | `schritt <n> erledigt` | `step <n> done` | `étape <n> terminé` |
+
+Other languages need another Vosk model and a `Vocabulary` in `CommandParser.kt`.
 
 ## Change the server or leave the kiosk
 

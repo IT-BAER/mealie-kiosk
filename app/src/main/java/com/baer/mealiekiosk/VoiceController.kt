@@ -13,7 +13,7 @@ const val MODEL_DIR = "model"
 private const val SAMPLE_RATE = 16000f
 
 /**
- * Offline German voice commands (Vosk, fixed phrase list). Runs only between [start] and [stop].
+ * Offline voice commands (Vosk, fixed phrase list from [CommandParser]). Runs only between [start] and [stop].
  * The model is not shipped in the APK: push it to getExternalFilesDir()/model, see README.
  */
 class VoiceController(
