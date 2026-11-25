@@ -95,6 +95,8 @@ and changes in `CommandParser.kt`.
 
 - The app allows plain `http://` because many Mealie servers run in the LAN without TLS. Use https
   when the server is reachable from outside.
+- Certificates from a private CA work once the root is installed on the tablet (Settings → Security →
+  Install from device storage → CA certificate); the app trusts user-installed CAs.
 - WebView DevTools are enabled for debugging (`adb forward tcp:9229 localabstract:webview_devtools_remote_<pid>`).
 - No Play Store or F-Droid build.
 
